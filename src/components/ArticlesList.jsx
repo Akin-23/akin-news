@@ -1,11 +1,9 @@
 import React from 'react'
-import { fetcharticles } from '../Api';
+import { fetchArticles } from '../Api';
 import { useEffect, useState } from 'react';
 import ArticleCard from './ArticleCard';
 
 const ArticlesList = ({ newSortBy, newOrder }) => {
-    console.log(newSortBy)
-    console.log(newOrder);
 
     const [articles, setArticles] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +14,7 @@ const ArticlesList = ({ newSortBy, newOrder }) => {
     useEffect(() => {
         setIsLoading(true);
         setIsError(false);
-        fetcharticles(newSortBy, newOrder).then((data) => {
+        fetchArticles(newSortBy, newOrder).then((data) => {
         setIsLoading(false);
         setArticles(data);
       }).catch((err) => {

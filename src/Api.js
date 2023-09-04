@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const fetcharticles = (newSortBy,newOrder) => {
+export const fetchArticles = (newSortBy,newOrder) => {
     return axios
       .get(
         `https://akinapplication.onrender.com/api/articles?sort_by=${newSortBy}&order=${newOrder}`
@@ -12,4 +12,32 @@ export const fetcharticles = (newSortBy,newOrder) => {
       .catch((err) => {
         console.log(err);
       });
-  }
+}
+
+export const fetchArticlesByTopic = (topic) => {
+  return axios
+    .get(
+      `https://akinapplication.onrender.com/api/articles?topic=${topic}`
+    )
+    .then(({ data }) => {
+      const { articles } = data;
+      return articles;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+  
+export const getTopics = () => {
+  return axios
+    .get(
+      `https://akinapplication.onrender.com/api/topics`
+    )
+    .then(({ data }) => {
+      const { topics } = data;
+      return topics;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
