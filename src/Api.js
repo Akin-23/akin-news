@@ -41,3 +41,15 @@ export const getTopics = () => {
       console.log(err);
     });
 };
+
+export const getUsers = () => {
+  return axios
+    .get("https://akinapplication.onrender.com/api/users")
+    .then(({ data }) => {
+      const { users } = data;
+      return users;
+    })
+    .catch((err) => {
+      console.log(err);
+  })
+}

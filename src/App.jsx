@@ -6,6 +6,7 @@ import Header from './components/Header'
 import HomePage from './components/HomePage'
 import { Routes, Route } from 'react-router'
 import SingleTopic from './components/SingleTopic'
+import Users from './components/Users'
 function App() {
 
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/topics/:topic" element={<SingleTopic />} />
+        <Route path="/UserLogin" element={<Users/>}/>
       </Routes>
     </>
   );
