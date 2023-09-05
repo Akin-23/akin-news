@@ -5,6 +5,7 @@ import './App.css'
 import Header from './components/Header'
 import HomePage from './components/HomePage'
 import { Routes, Route } from 'react-router'
+import SingleTopic from './components/SingleTopic'
 function App() {
 
   return (
@@ -12,6 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/topics/:topic" element={<SingleTopic />} />
       </Routes>
     </>
   );
