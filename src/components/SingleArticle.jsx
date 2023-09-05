@@ -1,8 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchArticlesByTopic } from "../Api";
 import { getArticle } from "../Api";
+import CommentsList from "./CommentsList";
+
 
 const SingleArticle = () => {
   const { article_id } = useParams();
@@ -31,10 +32,13 @@ const SingleArticle = () => {
     <div>
       <h2>{article.title}</h2>
       <main>
+        <p className="author">Author: {article.author}</p>
         <img className="article-image" src={article.article_img_url} />
-        <p className="author">{article.author}</p>
         <p className="body">{article.body}</p>
       </main>
+      <section>
+        <CommentsList article_id={article_id} />
+      </section>
     </div>
   );
 };

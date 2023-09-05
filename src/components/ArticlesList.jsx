@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import ArticleCard from './ArticleCard';
 
 const ArticlesList = ({ newSortBy, newOrder }) => {
-
     const [articles, setArticles] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
@@ -19,7 +18,7 @@ const ArticlesList = ({ newSortBy, newOrder }) => {
         setArticles(data);
       }).catch((err) => {
         setIsLoading(false);
-        setIsLoading(true);          
+        setIsError(true);          
       })
     }, [newSortBy, newOrder]);
 
@@ -27,14 +26,14 @@ const ArticlesList = ({ newSortBy, newOrder }) => {
     if (isError) return <p>Something has gone wrong!</p>;
 
 
-    return <main>
+    return <section className='articles'>
         <ul className='article-list'> 
             {articles.map((article) => {
                 return <ArticleCard key={article.article_id} article={article}  />;
             })}
         </ul>
         
-    </main>;
+    </section>;
 };
 
 export default ArticlesList
