@@ -20,6 +20,7 @@ const SingleTopic = () => {
         setFilteredArticles(data);
       })
       .catch((err) => {
+        setIsLoading(false);
         setIsError(true);
       });
   }, [topic]);
