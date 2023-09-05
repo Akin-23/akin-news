@@ -53,3 +53,14 @@ export const getUsers = () => {
       console.log(err);
   })
 }
+
+export const getArticle = (article_id) => {
+  return axios.get(`https://akinapplication.onrender.com/api/articles/${article_id}`)
+    .then(({ data }) => {
+      const { article } = data;
+      return article;
+    })
+    .catch((err) => {
+      console.log(err);
+  })
+}

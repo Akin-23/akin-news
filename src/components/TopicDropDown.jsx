@@ -9,15 +9,26 @@ import { Link } from "react-router-dom";
 const TopicDropDown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [topics, setTopics] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
-    useEffect(() => {
+  useEffect(() => {
+      setIsLoading(true);
+      setIsError(false);
       getTopics()
         .then((data) => {
+        setIsLoading(false);
           setTopics(data);
         })
         .catch((err) => {
+           setIsLoading(false);
+           setIsError(true);
         });
-    }, []);
+  }, []);
+  
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Something has gone wrong!</p>;
+
   
 
 
