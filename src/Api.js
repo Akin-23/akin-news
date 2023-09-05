@@ -1,23 +1,24 @@
 import axios from "axios";
+const newsApi = axios.create({
+  baseURL: "https://akinapplication.onrender.com/api"
+});
 
 export const fetchArticles = (newSortBy,newOrder) => {
-    return axios
-      .get(
-        `https://akinapplication.onrender.com/api/articles?sort_by=${newSortBy}&order=${newOrder}`
-      )
-      .then(({ data }) => {
-        const { articles } = data;
-        return articles;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+   return newsApi.get(
+       `/articles?sort_by=${newSortBy}&order=${newOrder}`
+     )
+     .then(({ data }) => {
+       const { articles } = data;
+       return articles;
+     })
+     .catch((err) => {
+       console.log(err);
+     });
 }
 
 export const fetchArticlesByTopic = (topic) => {
-  return axios
-    .get(
-      `https://akinapplication.onrender.com/api/articles?topic=${topic}`
+    return newsApi.get(
+      `/articles?topic=${topic}`
     )
     .then(({ data }) => {
       const { articles } = data;
@@ -29,10 +30,7 @@ export const fetchArticlesByTopic = (topic) => {
 };
   
 export const getTopics = () => {
-  return axios
-    .get(
-      `https://akinapplication.onrender.com/api/topics`
-    )
+  return newsApi.get('/topics')
     .then(({ data }) => {
       const { topics } = data;
       return topics;
@@ -43,8 +41,8 @@ export const getTopics = () => {
 };
 
 export const getUsers = () => {
-  return axios
-    .get("https://akinapplication.onrender.com/api/users")
+  return newsApi
+    .get("/users")
     .then(({ data }) => {
       const { users } = data;
       return users;
@@ -55,12 +53,25 @@ export const getUsers = () => {
 }
 
 export const getArticle = (article_id) => {
-  return axios.get(`https://akinapplication.onrender.com/api/articles/${article_id}`)
+  return newsApi
+    .get(`/articles/${article_id}`)
     .then(({ data }) => {
       const { article } = data;
       return article;
     })
     .catch((err) => {
       console.log(err);
-  })
+    });
 }
+
+export const getComments = (article_id) => {
+  return newsApi
+    .get(`/articles/${article_id}/comments`)
+    .then(({ data }) => {
+      const { comments } = data;
+      return comments;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
