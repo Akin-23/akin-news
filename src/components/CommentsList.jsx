@@ -2,6 +2,8 @@ import React from "react";
 import { getComments } from "../Api";
 import { useEffect, useState } from "react";
 import CommentCard from "./CommentCard";
+import { postComment } from "../Api";
+import PostComment from "./PostComment";
 
 const CommentsList = ({ article_id }) => {
   const [comments, setComments] = useState([]);
@@ -20,20 +22,21 @@ const CommentsList = ({ article_id }) => {
         setIsLoading(false);
         setIsError(true);
       });
-  }, [article_id]);
+  }, []);
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Something has gone wrong!</p>;
 
-return <section className='comments'>
-        <ul className='comments-list'> 
-            {comments.map((comment) => {
-                return (
-                  <CommentCard key={comment.comment_id} comment={comment} />
-                );
-            })}
-        </ul>
-        
-    </section>;};
+  return (
+    <section className="comments">
+      <PostComment setComments={setComments} article_id={article_id} />
+      <ul className="comments-list">
+        {comments.map((comment) => {
+          return <CommentCard key={comment.comment_id} comment={comment} />;
+        })}
+      </ul>
+    </section>
+  );
+};
 
 export default CommentsList;
