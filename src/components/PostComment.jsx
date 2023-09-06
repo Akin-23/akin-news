@@ -8,25 +8,30 @@ const PostComment = ({ setComments, article_id }) => {
   const { user } = useContext(UserContext);
   const [errorMessage, setErrorMessage] = useState(null);
   const [newComment, setNewComment] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const [isPosted, setIsPosted] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setIsLoading(true);
 
     const commentBody = {
       username: user,
       body: newComment,
     };
     postComment(commentBody, article_id)
-        .then((res) => {
-            const { comment } = res;
+      .then((res) => {
+        setIsLoading(false);
+
+        const { comment } = res;
         setIsPosted(true);
-            setComments((currentComments) => {
-            console.log(currentComments)
+        setComments((currentComments) => {
           return [comment, ...currentComments];
         });
       })
       .catch((error) => {
+        setIsLoading(false);
         setIsPosted(false);
         setErrorMessage("Comment was unable to post try again");
         console.log(error);
@@ -39,6 +44,8 @@ const PostComment = ({ setComments, article_id }) => {
     setIsPosted(false);
     setNewComment(event.target.value);
   }
+
+  if (isLoading) return <p>Uploading comment...</p>;
 
   return (
     <div>

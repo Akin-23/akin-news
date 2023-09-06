@@ -26,14 +26,19 @@ const SingleTopic = () => {
   }, [topic]);
 
    if (isLoading) return <p>Loading...</p>;
-   if (isError) return <p>Something has gone wrong!</p>;
+ if (isError) {
+   return <NotFound />;
+  } 
+  
+  if (filteredArticles.length === 0) {
+    return <h2> {topic} : No articles for this topic</h2>
+  }
 
 
   return (
     <>
       <ul>
         <h2>{topic}</h2>
-
         {filteredArticles.map((article) => {
           return <ArticleCard key={article.article_id} article={article} />;
         })}

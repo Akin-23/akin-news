@@ -11,7 +11,7 @@ export const fetchArticles = (newSortBy, newOrder) => {
       return articles;
     })
     .catch((err) => {
-      console.log(err);
+      throw new Error(err.message);
     });
 };
 
@@ -23,7 +23,7 @@ export const fetchArticlesByTopic = (topic) => {
       return articles;
     })
     .catch((err) => {
-      console.log(err);
+      throw new Error(err.message);
     });
 };
 
@@ -35,7 +35,7 @@ export const getTopics = () => {
       return topics;
     })
     .catch((err) => {
-      console.log(err);
+      throw new Error(err.message);
     });
 };
 
@@ -47,7 +47,7 @@ export const getUsers = () => {
       return users;
     })
     .catch((err) => {
-      console.log(err);
+      throw new Error(err.message);
     });
 };
 
@@ -59,7 +59,7 @@ export const getArticle = (article_id) => {
       return article;
     })
     .catch((err) => {
-      console.log(err);
+      throw new Error(err.message);
     });
 };
 
@@ -71,25 +71,21 @@ export const getComments = (article_id) => {
       return comments;
     })
     .catch((err) => {
-      console.log(err);
+      throw new Error(err.message);
     });
 };
 
 export const postComment = (commentBody, article_id) => {
-  console.log(article_id);
-  console.log(commentBody);
   return newsApi
     .post(`/articles/${article_id}/comments`, commentBody)
     .then(({ data }) => {
-      console.log(data);
-
       return data;
     })
     .catch((err) => {
-      console.log(err);
+      throw new Error(err.message);
     });
-}
-  
+};
+
 export const updateVote = (article_id, vote) => {
   const newVote = {
     inc_votes: vote,
@@ -103,6 +99,6 @@ export const updateVote = (article_id, vote) => {
       return article.votes;
     })
     .catch((err) => {
-      console.log(err);
+      throw new Error(err.message);
     });
 };
