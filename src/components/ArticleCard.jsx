@@ -10,7 +10,7 @@ const ArticleCard = ({ article }) => {
       </Link>
 
       <Link to={`/articles/${article.article_id}`}>
-        <img src={article.article_img_url} />
+        <img src={article.article_img_url} alt={`article img for ${article.article_id}`} />
       </Link>
       <br />
       <section className="votes">
