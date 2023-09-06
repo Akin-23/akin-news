@@ -2,7 +2,6 @@ import React from "react";
 import { getComments } from "../Api";
 import { useEffect, useState } from "react";
 import CommentCard from "./CommentCard";
-import { postComment } from "../Api";
 import PostComment from "./PostComment";
 
 const CommentsList = ({ article_id }) => {
@@ -32,7 +31,13 @@ const CommentsList = ({ article_id }) => {
       <PostComment setComments={setComments} article_id={article_id} />
       <ul className="comments-list">
         {comments.map((comment) => {
-          return <CommentCard key={comment.comment_id} comment={comment} />;
+          return (
+            <CommentCard
+              key={comment.comment_id}
+              comment={comment}
+              setComments={setComments}
+            />
+          );
         })}
       </ul>
     </section>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { comment } from "postcss";
 const newsApi = axios.create({
   baseURL: "https://akinapplication.onrender.com/api",
 });
@@ -102,3 +103,14 @@ export const updateVote = (article_id, vote) => {
       throw new Error(err.message);
     });
 };
+
+export const deleteComment = (comment_id) => {
+  return newsApi
+    .delete(`/comments/${comment_id}`)
+    .then(() => {
+    })
+    .catch((err) => {
+      throw new Error(err.message);
+    });
+};
+

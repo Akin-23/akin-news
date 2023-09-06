@@ -9,7 +9,6 @@ const PostComment = ({ setComments, article_id }) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [newComment, setNewComment] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
   const [isPosted, setIsPosted] = useState(false);
 
   const handleSubmit = (event) => {

@@ -1,15 +1,20 @@
 import React from "react";
+import DeleteComment from "./DeleteComment";
 
-const CommentCard = ({ comment }) => {
-    return (
-      <li className="comment">
-        <br />
+const CommentCard = ({ comment, setComments, setIsCommentDeleted }) => {
+  return (
+    <li className="comment">
+      <br />
 
-        <h3>{comment.author}</h3>
-        <p>{comment.body}</p>
-        <p>{comment.votes}</p>
-      </li>
-    );
+      <h3>{comment.author}</h3>
+      <p>{comment.body}</p>
+      <p>{comment.votes}</p>
+      <DeleteComment
+        comment={comment}
+        setComments={setComments}
+      />
+    </li>
+  );
 };
 
 export default CommentCard;
