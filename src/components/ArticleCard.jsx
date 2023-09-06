@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import VotingButtons from "./VotingButtons"
 
 const ArticleCard = ({ article }) => {
   return (
@@ -12,6 +13,9 @@ const ArticleCard = ({ article }) => {
         <img src={article.article_img_url} />
       </Link>
       <br />
+      <section className="votes">
+        <VotingButtons initialVotes={article.votes} article_id={article.article_id}/>
+      </section>
     </li>
   );
 };
