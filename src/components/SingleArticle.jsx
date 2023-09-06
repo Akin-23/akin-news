@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getArticle } from "../Api";
 import CommentsList from "./CommentsList";
+import VotingButtons from "./VotingButtons";
 
 
 const SingleArticle = () => {
@@ -37,6 +38,13 @@ const SingleArticle = () => {
         <p className="body">{article.body}</p>
       </main>
       <br/>
+      <section>
+        <VotingButtons
+          initialVotes={article.votes}
+          article_id={article.article_id}
+        />
+      </section>
+      <br />
       <section>
         <CommentsList article_id={article_id} />
       </section>
