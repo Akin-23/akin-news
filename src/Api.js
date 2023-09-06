@@ -1,25 +1,11 @@
 import axios from "axios";
 const newsApi = axios.create({
-  baseURL: "https://akinapplication.onrender.com/api"
+  baseURL: "https://akinapplication.onrender.com/api",
 });
 
-export const fetchArticles = (newSortBy,newOrder) => {
-   return newsApi.get(
-       `/articles?sort_by=${newSortBy}&order=${newOrder}`
-     )
-     .then(({ data }) => {
-       const { articles } = data;
-       return articles;
-     })
-     .catch((err) => {
-       console.log(err);
-     });
-}
-
-export const fetchArticlesByTopic = (topic) => {
-    return newsApi.get(
-      `/articles?topic=${topic}`
-    )
+export const fetchArticles = (newSortBy, newOrder) => {
+  return newsApi
+    .get(`/articles?sort_by=${newSortBy}&order=${newOrder}`)
     .then(({ data }) => {
       const { articles } = data;
       return articles;
@@ -28,9 +14,22 @@ export const fetchArticlesByTopic = (topic) => {
       console.log(err);
     });
 };
-  
+
+export const fetchArticlesByTopic = (topic) => {
+  return newsApi
+    .get(`/articles?topic=${topic}`)
+    .then(({ data }) => {
+      const { articles } = data;
+      return articles;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const getTopics = () => {
-  return newsApi.get('/topics')
+  return newsApi
+    .get("/topics")
     .then(({ data }) => {
       const { topics } = data;
       return topics;
@@ -49,8 +48,8 @@ export const getUsers = () => {
     })
     .catch((err) => {
       console.log(err);
-  })
-}
+    });
+};
 
 export const getArticle = (article_id) => {
   return newsApi
@@ -62,7 +61,7 @@ export const getArticle = (article_id) => {
     .catch((err) => {
       console.log(err);
     });
-}
+};
 
 export const getComments = (article_id) => {
   return newsApi
@@ -74,4 +73,15 @@ export const getComments = (article_id) => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+export const postComment = (article_id, comment) => {
+  return newsApi
+    .post(`/articles/${article_id}/comments`, comment)
+    .then(({ data }) => {
+      const { comment } = data;
+      return comment;
+    }).catch((err) => {
+      console.log(err);
+    })
 };
