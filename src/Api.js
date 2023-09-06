@@ -88,4 +88,21 @@ export const postComment = (commentBody, article_id) => {
     .catch((err) => {
       console.log(err);
     });
+}
+  
+export const updateVote = (article_id, vote) => {
+  const newVote = {
+    inc_votes: vote,
+  };
+
+  return newsApi
+    .patch(`/articles/${article_id}`, newVote)
+    .then(({ data }) => {
+      const { article } = data;
+      console.log(article.votes);
+      return article.votes;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
