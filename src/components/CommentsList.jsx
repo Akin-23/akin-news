@@ -22,7 +22,7 @@ const CommentsList = ({ article_id }) => {
         setIsLoading(false);
         setIsError(true);
       });
-  }, [article_id]);
+  }, []);
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Something has gone wrong!</p>;

@@ -36,6 +36,7 @@ const SingleArticle = () => {
         <img className="article-image" src={article.article_img_url} />
         <p className="body">{article.body}</p>
       </main>
+      <br/>
       <section>
         <CommentsList article_id={article_id} />
       </section>

@@ -2,21 +2,43 @@ import { postComment } from "../Api";
 import { useContext, useState } from "react";
 import { UserContext } from "./UserProvider";
 
-
-import React from 'react'
+import React from "react";
 
 const PostComment = ({ setComments, article_id }) => {
-    const { user } = useContext(UserContext);
-    const [errorMessage, setErrorMessage] = useState(null);
-    const [newBody, setNewComment] = useState("");
+  const { user } = useContext(UserContext);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [newComment, setNewComment] = useState("");
+  const [isPosted, setIsPosted] = useState(false);
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-      const handleVote = (voteValue) => {
+    const commentBody = {
+      username: user,
+      body: newComment,
+    };
+    postComment(commentBody, article_id)
+        .then((res) => {
+            const { comment } = res;
+        setIsPosted(true);
+            setComments((currentComments) => {
+            console.log(currentComments)
+          return [comment, ...currentComments];
+        });
+      })
+      .catch((error) => {
+        setIsPosted(false);
+        setErrorMessage("Comment was unable to post try again");
+        console.log(error);
+      });
 
-    if (user) {
+    setNewComment("");
+  };
 
-    }
-
+  function handleComment(event) {
+    setIsPosted(false);
+    setNewComment(event.target.value);
+  }
 
   return (
     <div>
@@ -24,25 +46,23 @@ const PostComment = ({ setComments, article_id }) => {
       {!user ? (
         <p>Please log in to comment</p>
       ) : (
-        <>
-          <button
-            onClick={() => handleVote(1)}
-            className={voted === 1 ? "voted" : ""}
-          >
-            Upvote
-          </button>
-
-          <button
-            onClick={() => handleVote(-1)}
-            className={voted === -1 ? "voted" : ""}
-          >
-            DownVote
-          </button>
-          <p>Vote: {vote}</p>
-        </>
+        <form onSubmit={handleSubmit}>
+          <label>
+            <input
+              id="body"
+              placeholder="Write comment"
+              value={newComment}
+              required
+              onChange={handleComment}
+            />
+          </label>
+          <button type="submit">Post comment</button>
+          {isPosted ? (
+            <h2> Your comment has been listed successfully</h2>
+          ) : null}
+        </form>
       )}
     </div>
   );
-}
-
-export default PostComment
+};
+export default PostComment;

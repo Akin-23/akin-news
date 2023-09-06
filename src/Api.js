@@ -75,13 +75,17 @@ export const getComments = (article_id) => {
     });
 };
 
-export const postComment = (article_id, comment) => {
+export const postComment = (commentBody, article_id) => {
+  console.log(article_id);
+  console.log(commentBody);
   return newsApi
-    .post(`/articles/${article_id}/comments`, comment)
+    .post(`/articles/${article_id}/comments`, commentBody)
     .then(({ data }) => {
-      const { comment } = data;
-      return comment;
-    }).catch((err) => {
-      console.log(err);
+      console.log(data);
+
+      return data;
     })
+    .catch((err) => {
+      console.log(err);
+    });
 };
