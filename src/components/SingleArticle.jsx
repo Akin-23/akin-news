@@ -33,16 +33,18 @@ const SingleArticle = () => {
   } 
   
     return (
-
       <div>
         <h2>{article.title}</h2>
         <main>
           <p className="author">Author: {article.author}</p>
+          <p className="created_at">{article.created_at}</p>
+          <p className="topic">{article.topic}</p>
           <img className="article-image" src={article.article_img_url} />
           <p className="body">{article.body}</p>
         </main>
         <br />
         <section>
+          <p className="votes">{article.votes}</p>
           <VotingButtons
             initialVotes={article.votes}
             article_id={article.article_id}
@@ -50,6 +52,7 @@ const SingleArticle = () => {
         </section>
         <br />
         <section>
+          <p className="comment_count">{article.comment_count}</p>
           <CommentsList article_id={article_id} />
         </section>
       </div>

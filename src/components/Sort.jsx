@@ -49,7 +49,7 @@ const Sort = () => {
               value="comment_count"
               onClick={handleSortByChange}
             />{" "}
-            Comments{" "}
+            Comment Count{" "}
           </label>
         </fieldset>
         <div>
