@@ -2,6 +2,7 @@ import React from "react";
 import DeleteComment from "./DeleteComment";
 
 const CommentCard = ({ comment, setComments, setIsCommentDeleted }) => {
+
   return (
     <li className="comment">
       <br />
@@ -12,6 +13,7 @@ const CommentCard = ({ comment, setComments, setIsCommentDeleted }) => {
       <DeleteComment
         comment={comment}
         setComments={setComments}
+        setIsCommentDeleted={setIsCommentDeleted}
       />
     </li>
   );

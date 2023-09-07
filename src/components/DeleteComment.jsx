@@ -1,19 +1,19 @@
 import { deleteComment } from "../Api";
 import { useContext, useState } from "react";
 import { UserContext } from "./UserProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-
-const DeleteComment = ({ comment, setComments }) => {
+const DeleteComment = ({ comment, setComments, setIsCommentDeleted }) => {
   const { user } = useContext(UserContext);
   const [errorMessage, setErrorMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false);
 
   const handleDelete = () => {
     setIsLoading(true);
-      deleteComment(comment.comment_id)
-          .then(() => {
-              setIsDeleted(true);
+    deleteComment(comment.comment_id)
+      .then(() => {
+        setIsCommentDeleted(true);
         setIsLoading(false);
         setComments((currComments) => {
           const newComments = currComments.filter(
@@ -24,7 +24,7 @@ const DeleteComment = ({ comment, setComments }) => {
       })
       .catch((error) => {
         setIsLoading(false);
-        setIsDeleted(false);
+        setIsCommentDeleted(false);
         setErrorMessage(
           "Comment was unable to be deleted please try again later"
         );
@@ -42,8 +42,7 @@ const DeleteComment = ({ comment, setComments }) => {
         <button onClick={() => handleDelete()} className="deletebutton">
           Delete
         </button>
-          )}
-          {isDeleted? window.alert("Comment Deleted"): null}
+      )}
     </div>
   );
 };

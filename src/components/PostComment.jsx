@@ -4,7 +4,7 @@ import { UserContext } from "./UserProvider";
 
 import React from "react";
 
-const PostComment = ({ setComments, article_id }) => {
+const PostComment = ({ setComments, article_id, setIsCommentDeleted }) => {
   const { user } = useContext(UserContext);
   const [errorMessage, setErrorMessage] = useState(null);
   const [newComment, setNewComment] = useState("");
@@ -13,6 +13,7 @@ const PostComment = ({ setComments, article_id }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setIsCommentDeleted(false);
     setIsLoading(true);
 
     const commentBody = {
