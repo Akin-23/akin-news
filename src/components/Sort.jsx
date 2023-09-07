@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import ArticlesList from "./ArticlesList";
+import { AiOutlineCaretUp, AiOutlineCaretDown } from "react-icons/ai";
 
 const Sort = () => {
   const [newSortBy, setSortBy] = useState("created_at");
   const [newOrder, setOrder] = useState("desc");
-
+  const [isOpen, setIsOpen] = useState(false);
 
   function handleSortByChange(event) {
     setSortBy(event.target.value);
   }
-  function handleOrderChange(event) {
-    setOrder(event.target.value);
+  function handleOrder(ord) {
+      setOrder(ord);
   }
+
 
   return (
     <section>
@@ -50,31 +52,43 @@ const Sort = () => {
             Comments{" "}
           </label>
         </fieldset>
-        <fieldset>
-          <label htmlFor="asc">
-            <input
-              id="asc"
-              type="radio"
-              name="order"
-              value="asc"
-              onClick={handleOrderChange}
-            />{" "}
-            Ascending{" "}
-          </label>
-          <label htmlFor="desc">
-            <input
-              id="desc"
-              type="radio"
-              name="order"
-              value="desc"
-              defaultChecked
-              onClick={handleOrderChange}
-            />{" "}
-            Descending{" "}
-          </label>
-        </fieldset>
+        <div>
+          <button onClick={() => setIsOpen((prev) => !prev)}>
+            {newOrder === "desc" ? (
+              <p className={newOrder === "desc" ? "active-button" : ""}>
+                Descending
+              </p>
+            ) : (
+              <p className={newOrder === "asc" ? "active-button" : ""}>
+                Ascending
+              </p>
+            )}
+            {!isOpen ? (
+              <AiOutlineCaretDown className="h-8" />
+            ) : (
+              <AiOutlineCaretUp className="h-8" />
+            )}
+            {isOpen && (
+              <div>
+                <li
+                  id="asc"
+                  onClick={() => handleOrder("asc")}
+                  className={newOrder === "asc" ? "active-button" : ""}
+                >
+                  Ascending
+                </li>
+                <li
+                  id="desc"
+                  onClick={() => handleOrder("desc")}
+                  className={newOrder === "desc" ? "active-button" : ""}
+                >
+                  Descending
+                </li>
+              </div>
+            )}
+          </button>
+        </div>
       </section>
-
       <section>
         <ArticlesList newSortBy={newSortBy} newOrder={newOrder} />
       </section>

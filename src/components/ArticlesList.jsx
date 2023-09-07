@@ -3,7 +3,7 @@ import { fetchArticles } from '../Api';
 import { useEffect, useState } from 'react';
 import ArticleCard from './ArticleCard';
 
-const ArticlesList = ({ newSortBy, newOrder }) => {
+const ArticlesList = ({ newSortBy, newOrder}) => {
     const [articles, setArticles] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
