@@ -42,6 +42,7 @@ const VotingButtons = ({ initialVotes, article_id }) => {
 
   return (
     <div>
+      <p>Vote Count : {vote}</p>
       {errorMessage && <p>{errorMessage}</p>}
       {!user ? (
         <p>Please log in to vote</p>
@@ -62,7 +63,6 @@ const VotingButtons = ({ initialVotes, article_id }) => {
           >
             DownVote
           </button>
-          <p>Vote: {vote}</p>
         </>
       )}
     </div>
