@@ -7,8 +7,6 @@ import { TopicContext } from "./TopicProvider";
 
 
 const Header = () => {
-
-
   const { user, isLoggedIn, userImage } = useContext(UserContext); 
   const { setTopic } = useContext(TopicContext); 
 
@@ -17,7 +15,7 @@ const Header = () => {
       <div className="userlogo-container">
         <Link to="/UserLogin" onClick={() => setTopic("")}>
             <img
-              src="src/assets/favicon.png"
+              src="/favicon.png"
               alt="favicon user logo"
               className="userlogin"
             />
@@ -27,7 +25,7 @@ const Header = () => {
         <Link to="/" onClick={() => setTopic("")}>
           <img
             className="akin-news-logo"
-            src="src/assets/AKINNEWSLogo.png"
+            src="/AKINNEWSLogo.png"
             alt="akin-news logo"
           />
         </Link>
