@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { getArticle } from "../Api";
 import CommentsList from "./CommentsList";
 import VotingButtons from "./VotingButtons";
+import { capitalisingFirstLetter, formatTime } from "../functions";
+
 import NotFound from "./NotFound";
 
 const SingleArticle = () => {
@@ -17,6 +19,8 @@ const SingleArticle = () => {
     getArticle(article_id)
       .then((data) => {
         setIsLoading(false);
+        data.topic = capitalisingFirstLetter(data.topic);
+        data.created_at = formatTime(data.created_at);
         setArticle(data);
       })
       .catch((err) => {
@@ -31,20 +35,26 @@ const SingleArticle = () => {
   if (error) {
     return <NotFound />;
   } 
+
   
+
     return (
-      <div>
-        <h2>{article.title}</h2>
+      <div className="articlepage">
+        <h2 className="article-title">
+          <b>{article.title}</b>
+        </h2>
+        <br/>
         <main>
-          <p className="author">Author: {article.author}</p>
-          <p className="topic">Topic: {article.topic}</p>
-          <img className="article-image" src={article.article_img_url} />
+          <img className="articlepage-image" src={article.article_img_url} />
+
           <p className="created_at">Published on: {article.created_at}</p>
-          <br/>
+          <p className="author">Author: {article.author}</p>
+          <p className="topic">Topic: {article.topic} </p>
+          <br />
           <p className="body">{article.body}</p>
         </main>
         <br />
-        <section>
+        <section className="votsection">
           <VotingButtons
             initialVotes={article.votes}
             article_id={article.article_id}
@@ -52,7 +62,7 @@ const SingleArticle = () => {
         </section>
         <br />
         <section>
-          <p className="comment_count">Comment Count: {article.comment_count}</p>
+          <p className="comment_count">{article.comment_count} comments</p>
           <CommentsList article_id={article_id} />
         </section>
       </div>

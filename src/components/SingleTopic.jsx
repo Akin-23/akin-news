@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchArticlesByTopic } from "../Api";
 import ArticleCard from "./ArticleCard";
+import { capitalisingFirstLetter } from "../functions";
+
+
 
 const SingleTopic = () => {
   const { topic } = useParams();
@@ -16,6 +19,7 @@ const SingleTopic = () => {
     fetchArticlesByTopic(topic)
       .then((data) => {
         setIsLoading(false);
+        
 
         setFilteredArticles(data);
       })
@@ -31,14 +35,14 @@ const SingleTopic = () => {
   } 
   
   if (filteredArticles.length === 0) {
-    return <h2> {topic} : No articles for this topic</h2>
+    return <h2> {capitalisingFirstLetter(topic)} : No articles for this topic</h2>
   }
 
 
   return (
     <>
+      <br/>
       <ul>
-        <h2>{topic}</h2>
         {filteredArticles.map((article) => {
           return <ArticleCard key={article.article_id} article={article} />;
         })}

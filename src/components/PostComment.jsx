@@ -1,6 +1,7 @@
 import { postComment } from "../Api";
 import { useContext, useState } from "react";
 import { UserContext } from "./UserProvider";
+import { Link } from "react-router-dom";
 
 import React from "react";
 
@@ -51,7 +52,9 @@ const PostComment = ({ setComments, article_id, setIsCommentDeleted }) => {
     <div>
       {errorMessage && <p>{errorMessage}</p>}
       {!user ? (
-        <p>Please log in to comment</p>
+        <Link to="/UserLogin">
+          <p> Please log in to comment </p>
+        </Link>
       ) : (
         <form onSubmit={handleSubmit}>
           <label>
@@ -63,7 +66,9 @@ const PostComment = ({ setComments, article_id, setIsCommentDeleted }) => {
               onChange={handleComment}
             />
           </label>
-          <button type="submit">Post comment</button>
+          <button type="submit" id="submit-button">
+            Post comment
+          </button>
           {isPosted ? (
             <h2> Your comment has been listed successfully</h2>
           ) : null}

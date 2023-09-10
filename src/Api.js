@@ -52,6 +52,8 @@ export const getUsers = () => {
     });
 };
 
+
+
 export const getArticle = (article_id) => {
   return newsApi
     .get(`/articles/${article_id}`)

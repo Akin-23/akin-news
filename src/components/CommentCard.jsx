@@ -6,10 +6,9 @@ const CommentCard = ({ comment, setComments, setIsCommentDeleted }) => {
   return (
     <li className="comment">
       <br />
-
-      <h3>{comment.author}</h3>
+      <h3 className="author-name">{comment.author}</h3>
       <p>{comment.body}</p>
-      <p>{comment.votes}</p>
+      <p>Vote Count : {comment.votes}</p>
       <DeleteComment
         comment={comment}
         setComments={setComments}

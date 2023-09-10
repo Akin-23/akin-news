@@ -4,7 +4,7 @@ import { UserContext } from "./UserProvider";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const { setUser } = useContext(UserContext);
+  const { setUser, setUserImage } = useContext(UserContext);
   useEffect(() => {
     getUsers().then((users) => {
       setUsers(users);
@@ -20,14 +20,15 @@ const Users = () => {
               className="user_card"
               onClick={() => {
                 setUser(user.username);
+                setUserImage(user.avatar_url);
               }}
             >
+              <p className="user_text">{user.username}</p>
               <img
                 src={user.avatar_url}
                 alt={user.username}
                 className="user_avatar"
               />
-              <p className="user_text">{user.username}</p>
             </div>
           );
         })}

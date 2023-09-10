@@ -26,7 +26,7 @@ To access the complete range of features within the application, user authentica
 
 #### Home and Topic Routes
 
-Upon loading, the demo initiates requests to retrieve lists of topics and articles from the API. These topics are then seamlessly integrated into the drop-down menu within the Header component, facilitating dynamic menu generation.
+Upon loading, the demo initiates requests to retrieve lists of topics and articles from the API. These topics are then seamlessly integrated into the drop-down menu within the Navigation component, facilitating dynamic menu generation.
 
 Both the home and topic pages employ the same Article card component to present concise summaries of articles, ensuring a consistent user experience.
 

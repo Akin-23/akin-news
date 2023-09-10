@@ -16,8 +16,8 @@ const Sort = () => {
 
 
   return (
-    <section>
-      <h2>Sort By</h2>
+    <section className="sortsection">
+      <h2 >Sort By</h2>
       <section>
         <fieldset>
           <label htmlFor="created_at">
@@ -52,8 +52,9 @@ const Sort = () => {
             Comment Count{" "}
           </label>
         </fieldset>
-        <div>
-          <button onClick={() => setIsOpen((prev) => !prev)}>
+        <br/>
+        <div className="order-btn-container">
+          <button className="order-btn" onClick={() => setIsOpen((prev) => !prev)}>
             {newOrder === "desc" ? (
               <p className={newOrder === "desc" ? "active-button" : ""}>
                 Descending
@@ -90,6 +91,7 @@ const Sort = () => {
         </div>
       </section>
       <section>
+        <br/>
         <ArticlesList newSortBy={newSortBy} newOrder={newOrder} />
       </section>
     </section>

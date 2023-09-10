@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { UserContext } from "./UserProvider";
 import { updateVote } from "../Api";
+import { Link } from "react-router-dom";
 
 const VotingButtons = ({ initialVotes, article_id }) => {
   const { user } = useContext(UserContext);
@@ -41,24 +42,27 @@ const VotingButtons = ({ initialVotes, article_id }) => {
   };
 
   return (
-    <div>
+    <div className="votebuttons">
       <p>Vote Count : {vote}</p>
+
       {errorMessage && <p>{errorMessage}</p>}
       {!user ? (
-        <p>Please log in to vote</p>
+        <Link to="/UserLogin">
+          <p>Please log in to vote</p>
+        </Link>
       ) : (
         <>
           <button
             onClick={() => handleVote(1)}
-            className={voted === 1 ? "voted" : ""}
+            className={voted === 1 ? "voted" : "upvote"}
             disabled={isVotingDisabled}
           >
-            Upvote
+            UpVote
           </button>
 
           <button
             onClick={() => handleVote(-1)}
-            className={voted === -1 ? "voted" : ""}
+            className={voted === -1 ? "voted" : "downvote"}
             disabled={isVotingDisabled}
           >
             DownVote
