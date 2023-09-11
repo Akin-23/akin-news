@@ -32,8 +32,8 @@ const TopicDropDown = () => {
         });
   }, []);
   
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Something has gone wrong!</p>;
+  if (isLoading) return <p className='topicloading'>Loading...</p>;
+  if (isError) return <p className="topicloading">Something has gone wrong!</p>;
 
   
 

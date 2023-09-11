@@ -90,7 +90,7 @@ const Sort = () => {
           </button>
         </div>
       </section>
-      <section>
+      <section className="listsection">
         <br/>
         <ArticlesList newSortBy={newSortBy} newOrder={newOrder} />
       </section>

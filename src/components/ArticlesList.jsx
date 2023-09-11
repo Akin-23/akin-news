@@ -28,17 +28,17 @@ const ArticlesList = ({ newSortBy, newOrder}) => {
     }, [newSortBy, newOrder]);
 
     if (isLoading) return <p className='loading'>Loading...</p>
-    if (isError) return <p>Something has gone wrong!</p>;
+    if (isError) return <p className="loading">Something has gone wrong!</p>;
 
 
-    return <section className='articles'>
-        <ul className='article-list'> 
+    return ( 
+        <ul className='articlelist-container'> 
             {articles.map((article) => {
                 return <ArticleCard key={article.article_id} article={article}  />;
             })}
         </ul>
+    )
         
-    </section>;
 };
 
 export default ArticlesList

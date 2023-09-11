@@ -139,7 +139,7 @@ body{
 .article-container {
 margin: auto;  
 width: 80%;
-  max-width: 100%;
+max-width: 100%;
 } 
 
 .votes {
@@ -255,5 +255,49 @@ width: 80%;
     word-wrap: break-word;
   }
 
+  .topicloading {
+        color: white;
 
+  }
+
+@media (min-width:600px) {
+  .user{
+   display: flex;
+   flex-wrap:wrap;
+   }
+
+   .user_card {
+    flex-basis: calc(50% - 20px);
+   }
+
+   .user_avatar {
+    width: 20%;
+   }
+
+  .articlelist-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 5px;
+  }
+
+  .article-list {
+  flex-basis: calc(50% - 20px);
+  margin: 10px;
+
+  }
+
+  .image-container {
+    width:100%;
+    overflow: hidden;
+  }
+
+  .article-image {
+    width: 100%;
+    height:400px;
+  }
+
+
+
+}
 
