@@ -20,7 +20,7 @@ This front end application interacts with the back end RESTful API I created. De
 
 A working example of this demo is published at https://loquacious-faun-fbecf6.netlify.app/
 
-To improve the slow load time of our application, we recommend trying a simple page refresh, as it can often resolve temporary issues causing the slowdown
+To improve the slow load time of my application, I recommend trying a simple page refresh, as it can often resolve temporary issues causing the slowdown
 
 ### Functionality
 
