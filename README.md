@@ -20,6 +20,8 @@ This front end application interacts with the back end RESTful API I created. De
 
 A working example of this demo is published at https://loquacious-faun-fbecf6.netlify.app/
 
+To improve the slow load time of our application, we recommend trying a simple page refresh, as it can often resolve temporary issues causing the slowdown
+
 ### Functionality
 
 To access the complete range of features within the application, user authentication is required. By simply clicking the "User Login" link in the navigation bar, the demo initiates a GET request to the API, presenting a list of available users for selection. You can login in by clicking on the user's avatar. Once logged in as a user, you gain access to exciting capabilities on the website.
